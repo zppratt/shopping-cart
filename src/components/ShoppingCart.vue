@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <a v-on:click="incrementItem">Add to cart</a>
     <h1>{{ itemCount }}</h1>
     <ul id="example-1">
       <li v-for="item in items" :key="item.itemid">
@@ -11,6 +10,7 @@
             <h5 class="mt-0">{{ item.productName }}</h5>
             {{ item.description }}
           </div>
+          <a v-on:click="incrementItem(item)">Add to cart</a>
         </div>
         {{ item }}
       </li>

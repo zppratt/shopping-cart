@@ -12,14 +12,22 @@ const store = new Vuex.Store({
   state: {
     msg: 'Hello from Vuex',
     itemCount: 0,
-    items: []
+    items: [],
+    cart: []
   },
   mutations: {
     changeMsg(state, msg) {
       state.msg = msg;
     },
-    incrementItem(state) {
-      state.itemCount++;
+    incrementItem(state, item) {
+      var foundIndex = state.items.findIndex(x => x.itemid == item.itemid);
+      if (!state.items[foundIndex]) {
+        console.log('Item not found at index: ' + foundIndex);
+        return;
+      }
+      state.items[foundIndex].available--;
+      state.cart.push(item);
+      console.log("Cart: " + state.cart);
     },
     updateItems(state, items) {
       state.items = items
