@@ -1,40 +1,42 @@
 <template>
-  <div class="jumbotron">
-    <div class="sticky card">
+  <div class="template">
+    <div class="sticky card pull-left text-right">
       <h1>Total: {{ total | currency }}</h1>
     </div>
-    <div class="row">
-      <div class="col-10">
-        <h1 class="pb-5">{{ msg }}</h1>
-        <ul id="example-1">
-          <li v-for="item in items" :key="item.itemid" class="pb-5">
-            <div class="media"> 
-                <div class="media-left"> 
-                    <img v-bind:src="item.image" class="media-object" style="width:60px"> 
-                </div> 
-              
-                <div class="media-body"> 
-                    <h4 class="media-heading"> 
-                        {{ item.productName }} 
-                    </h4>
-                    <p>
-                      {{ item.description }}
-                    </p> 
-                    <button class="btn btn-primary" v-on:click="incrementItem(item)">Add to cart</button>
-                </div> 
-            </div>
-            {{ item }}
-          </li>
-          <hr>
-        </ul>
-      </div>
-      <div class="col-2">
-        <div class="sticky">
-          <ul id="cart">
-            <li v-for="item in uniqueItems" :key="item.itemid" class="pb-5">
-              <div class="card">{{ item.productName }}</div>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-10">
+          <h1 class="pb-5">{{ msg }}</h1>
+          <ul id="example-1">
+            <li v-for="item in items" :key="item.itemid" class="pb-5">
+              <div class="media"> 
+                  <div class="media-left"> 
+                      <img v-bind:src="item.image" class="media-object" style="width:60px"> 
+                  </div> 
+                
+                  <div class="media-body"> 
+                      <h4 class="media-heading"> 
+                          {{ item.productName }} 
+                      </h4>
+                      <p>
+                        {{ item.description }}
+                      </p> 
+                      <button class="btn btn-primary" v-on:click="incrementItem(item)">Add to cart</button>
+                  </div> 
+              </div>
+              {{ item }}
             </li>
+            <hr>
           </ul>
+        </div>
+        <div class="col-2">
+          <div class="sticky">
+            <ul id="cart">
+              <li v-for="item in uniqueItems" :key="item.itemid" class="pb-5 row">
+                <div class="card">{{ item.productName }}</div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
