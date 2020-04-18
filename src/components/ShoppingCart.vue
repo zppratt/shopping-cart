@@ -32,9 +32,7 @@
         <div class="col-2">
           <div class="sticky">
             <ul id="cart">
-              <li v-for="item in uniqueItems" :key="item.itemid" class="pb-5 row">
-                <div class="card">{{ item.productName }}</div>
-              </li>
+              <CartItem />
             </ul>
           </div>
         </div>
@@ -48,6 +46,7 @@ import { mapGetters } from 'vuex'
 import { mapState } from 'vuex'
 import { mapMutations } from 'vuex'
 import items from '../../items.json'
+import CartItem from './CartItem.vue'
 
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -57,7 +56,8 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 export default {
   name: 'ShoppingCart',
-  props: {
+  components: {
+    CartItem
   },
   computed: {
     ...mapState([
