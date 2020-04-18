@@ -4,7 +4,14 @@
     <a v-on:click="incrementItem">Add to cart</a>
     <h1>{{ itemCount }}</h1>
     <ul id="example-1">
-      <li v-for="item in items" :key="item">
+      <li v-for="item in items" :key="item.itemid">
+        <div class="media">
+          <img class="mr-3" v-bind:src="item.image" alt="Generic placeholder image">
+          <div class="media-body">
+            <h5 class="mt-0">{{ item.productName }}</h5>
+            {{ item.description }}
+          </div>
+        </div>
         {{ item }}
       </li>
     </ul>
@@ -19,7 +26,6 @@ import items from '../../items.json'
 export default {
   name: 'ShoppingCart',
   props: {
-    msg: String
   },
   computed: mapState([
     // map this.msg to store.state.msg
