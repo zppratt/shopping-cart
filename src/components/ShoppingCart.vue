@@ -31,7 +31,7 @@
       <div class="col-2">
         <div class="sticky">
           <ul id="cart">
-            <li v-for="item in cart" :key="item.itemid" class="pb-5">
+            <li v-for="item in uniqueItems" :key="item.itemid" class="pb-5">
               <div class="card">{{ item.productName }}</div>
             </li>
           </ul>
@@ -66,7 +66,8 @@ export default {
       'cart'
     ]),
     ...mapGetters([
-      'total'
+      'total',
+      'uniqueItems'
     ])
   },
   methods: {

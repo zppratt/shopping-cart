@@ -25,6 +25,10 @@ const store = new Vuex.Store({
       return state.cart.length ? state.cart
         .map(item => item.price)
         .reduce((total, price) => total + price) : 0;
+    },
+    uniqueItems(state) {
+      return state.cart.reduce((unique, item) =>
+          unique.some(x => x.itemid === item.itemid) ? unique : [...unique, item], [])
     }
   },
   mutations: {
