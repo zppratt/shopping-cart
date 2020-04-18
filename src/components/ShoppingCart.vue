@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
+  <div class="jumbotron">
     <div class="row">
       <div class="col-10">
         <h1 class="pb-5">{{ msg }}</h1>
+        <h1>{{ total }}</h1>
         <ul id="example-1">
           <li v-for="item in items" :key="item.itemid" class="pb-5">
             <div class="media"> 
@@ -28,15 +29,19 @@
       <div class="col-2">
         <ul id="cart">
           <li v-for="item in cart" :key="item.itemid" class="pb-5">
-            <h4>{{ item.productName }}</h4>
+            <div class="card">{{ item.productName }}</div>
           </li>
         </ul>
       </div>
+    </div>
+    <div class="sticky card">
+      Hello Sticky!
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { mapState } from 'vuex'
 import { mapMutations } from 'vuex'
 import items from '../../items.json'
@@ -45,13 +50,18 @@ export default {
   name: 'ShoppingCart',
   props: {
   },
-  computed: mapState([
-    // map this.msg to store.state.msg
-    'msg',
-    'itemCount',
-    'items',
-    'cart'
-  ]),
+  computed: {
+    ...mapState([
+      // map this.msg to store.state.msg
+      'msg',
+      'itemCount',
+      'items',
+      'cart'
+    ]),
+    ...mapGetters([
+      'total'
+    ])
+  },
   methods: {
     ...mapMutations([
       'incrementItem',
@@ -76,5 +86,10 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+}
+div.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 </style>

@@ -17,7 +17,17 @@ const store = new Vuex.Store({
     msg: 'Welcome to the cart',
     itemCount: 0,
     items: [],
-    cart: []
+    cart: [],
+
+  },
+  getters: {
+    total(state) {
+      return state.cart.length ? state.cart
+        .map(c => c.price)
+        .reduce((total, cartItem) => {
+          console.log(total)
+          total += cartItem.price}) : 0;
+    }
   },
   mutations: {
     changeMsg(state, msg) {
