@@ -1,9 +1,11 @@
 <template>
   <div class="jumbotron">
+    <div class="sticky card">
+      <h1>Total: {{ total | currency }}</h1>
+    </div>
     <div class="row">
       <div class="col-10">
         <h1 class="pb-5">{{ msg }}</h1>
-        <h1>{{ total }}</h1>
         <ul id="example-1">
           <li v-for="item in items" :key="item.itemid" class="pb-5">
             <div class="media"> 
@@ -27,15 +29,14 @@
         </ul>
       </div>
       <div class="col-2">
-        <ul id="cart">
-          <li v-for="item in cart" :key="item.itemid" class="pb-5">
-            <div class="card">{{ item.productName }}</div>
-          </li>
-        </ul>
+        <div class="sticky">
+          <ul id="cart">
+            <li v-for="item in cart" :key="item.itemid" class="pb-5">
+              <div class="card">{{ item.productName }}</div>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="sticky card">
-      Hello Sticky!
     </div>
   </div>
 </template>
@@ -45,6 +46,12 @@ import { mapGetters } from 'vuex'
 import { mapState } from 'vuex'
 import { mapMutations } from 'vuex'
 import items from '../../items.json'
+
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2
+})
 
 export default {
   name: 'ShoppingCart',
@@ -67,6 +74,12 @@ export default {
       'incrementItem',
       'updateItems'
     ])
+  },
+  filters: {
+    currency: function (value) {
+      if (!value) return ''
+      return formatter.format(value);
+    }
   },
   created() {
     this.updateItems(items)
