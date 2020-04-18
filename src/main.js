@@ -14,7 +14,7 @@ Vue.use(BootstrapVue);
 
 const store = new Vuex.Store({
   state: {
-    msg: 'Hello from Vuex',
+    msg: 'Welcome to the cart',
     itemCount: 0,
     items: [],
     cart: []

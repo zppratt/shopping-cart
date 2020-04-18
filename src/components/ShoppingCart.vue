@@ -1,28 +1,38 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h1>{{ itemCount }}</h1>
-    <ul id="example-1">
-      <li v-for="item in items" :key="item.itemid">
-        <div class="media"> 
-            <div class="media-left"> 
-                <img v-bind:src="item.image" class="media-object" style="width:60px"> 
-            </div> 
-          
-            <div class="media-body"> 
-                <h4 class="media-heading"> 
-                    {{ item.productName }} 
-                </h4>
-                <p>
-                  {{ item.description }}
-                </p> 
-                <a v-on:click="incrementItem(item)">Add to cart</a>
-            </div> 
-        </div>
-        {{ item }}
-      </li>
-      <hr>
-    </ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-10">
+        <h1 class="pb-5">{{ msg }}</h1>
+        <ul id="example-1">
+          <li v-for="item in items" :key="item.itemid" class="pb-5">
+            <div class="media"> 
+                <div class="media-left"> 
+                    <img v-bind:src="item.image" class="media-object" style="width:60px"> 
+                </div> 
+              
+                <div class="media-body"> 
+                    <h4 class="media-heading"> 
+                        {{ item.productName }} 
+                    </h4>
+                    <p>
+                      {{ item.description }}
+                    </p> 
+                    <button class="btn btn-primary" v-on:click="incrementItem(item)">Add to cart</button>
+                </div> 
+            </div>
+            {{ item }}
+          </li>
+          <hr>
+        </ul>
+      </div>
+      <div class="col-2">
+        <ul id="cart">
+          <li v-for="item in cart" :key="item.itemid" class="pb-5">
+            <h4>{{ item.productName }}</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,7 +49,8 @@ export default {
     // map this.msg to store.state.msg
     'msg',
     'itemCount',
-    'items'
+    'items',
+    'cart'
   ]),
   methods: {
     ...mapMutations([
@@ -65,9 +76,5 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-  padding-bottom: 50px;
-}
-a {
-  color: #42b983;
 }
 </style>
