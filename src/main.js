@@ -8,11 +8,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    msg: 'Hello from Vuex'
+    msg: 'Hello from Vuex',
+    itemCount: 0,
   },
   mutations: {
     changeMsg(state, msg) {
       state.msg = msg;
+    },
+    incrementItem(state) {
+      state.itemCount++;
     }
   }
 })

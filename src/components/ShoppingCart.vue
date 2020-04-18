@@ -1,11 +1,14 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <a v-on:click="incrementItem">Add to cart</a>
+    <h1>{{ itemCount }}</h1>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'ShoppingCart',
@@ -14,8 +17,14 @@ export default {
   },
   computed: mapState([
     // map this.msg to store.state.msg
-    'msg'
-  ])
+    'msg',
+    'itemCount'
+  ]),
+  methods: {
+    ...mapMutations([
+      'incrementItem'
+    ])
+  }
 }
 </script>
 
