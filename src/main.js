@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   state: {
     msg: 'Hello from Vuex',
     itemCount: 0,
+    items: []
   },
   mutations: {
     changeMsg(state, msg) {
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     },
     incrementItem(state) {
       state.itemCount++;
+    },
+    updateItems(state, items) {
+      state.items = items
     }
   }
 })

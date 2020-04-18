@@ -3,12 +3,18 @@
     <h1>{{ msg }}</h1>
     <a v-on:click="incrementItem">Add to cart</a>
     <h1>{{ itemCount }}</h1>
+    <ul id="example-1">
+      <li v-for="item in items" :key="item">
+        {{ item }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { mapMutations } from 'vuex'
+import items from '../../items.json'
 
 export default {
   name: 'ShoppingCart',
@@ -18,12 +24,17 @@ export default {
   computed: mapState([
     // map this.msg to store.state.msg
     'msg',
-    'itemCount'
+    'itemCount',
+    'items'
   ]),
   methods: {
     ...mapMutations([
-      'incrementItem'
+      'incrementItem',
+      'updateItems'
     ])
+  },
+  created() {
+    this.updateItems(items)
   }
 }
 </script>
