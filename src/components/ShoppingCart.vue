@@ -24,7 +24,6 @@
                       <button class="btn btn-primary" v-on:click="incrementItem(item)">Add to cart</button>
                   </div> 
               </div>
-              {{ item }}
             </li>
             <hr>
           </ul>
