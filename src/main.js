@@ -23,10 +23,8 @@ const store = new Vuex.Store({
   getters: {
     total(state) {
       return state.cart.length ? state.cart
-        .map(c => c.price)
-        .reduce((total, cartItem) => {
-          console.log(total)
-          total += cartItem.price}) : 0;
+        .map(item => item.price)
+        .reduce((total, price) => total + price) : 0;
     }
   },
   mutations: {
