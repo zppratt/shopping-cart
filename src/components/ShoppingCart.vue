@@ -4,16 +4,24 @@
     <h1>{{ itemCount }}</h1>
     <ul id="example-1">
       <li v-for="item in items" :key="item.itemid">
-        <div class="media">
-          <img class="mr-3" v-bind:src="item.image" alt="Generic placeholder image">
-          <div class="media-body">
-            <h5 class="mt-0">{{ item.productName }}</h5>
-            {{ item.description }}
-          </div>
-          <a v-on:click="incrementItem(item)">Add to cart</a>
+        <div class="media"> 
+            <div class="media-left"> 
+                <img v-bind:src="item.image" class="media-object" style="width:60px"> 
+            </div> 
+          
+            <div class="media-body"> 
+                <h4 class="media-heading"> 
+                    {{ item.productName }} 
+                </h4>
+                <p>
+                  {{ item.description }}
+                </p> 
+                <a v-on:click="incrementItem(item)">Add to cart</a>
+            </div> 
         </div>
         {{ item }}
       </li>
+      <hr>
     </ul>
   </div>
 </template>
@@ -57,6 +65,7 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
+  padding-bottom: 50px;
 }
 a {
   color: #42b983;
