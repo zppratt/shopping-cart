@@ -35,7 +35,7 @@ const store = new Vuex.Store({
     changeMsg(state, msg) {
       state.msg = msg;
     },
-    incrementItem(state, item) {
+    addToCart(state, item) {
       var foundIndex = state.items.findIndex(x => x.itemid == item.itemid);
       if (state.items[foundIndex].available <= 0) {
         return;
@@ -46,6 +46,21 @@ const store = new Vuex.Store({
       }
       state.items[foundIndex].available--;
       state.cart.push(item);
+      console.log("Cart: " + state.cart);
+    },
+    removeFromCart(state, item) {
+      var foundIndex = state.items.findIndex(x => x.itemid == item.itemid);
+      if (!state.items[foundIndex]) {
+        console.log('Item not found at index: ' + foundIndex);
+        return;
+      }
+      state.items[foundIndex].available++;
+      for (let i = 0; i < state.cart.length; i++) {
+        if (state.cart[i].itemid === item.itemid) {
+          state.cart.splice(i, 1);
+          break;
+        }
+      }
       console.log("Cart: " + state.cart);
     },
     updateItems(state, items) {

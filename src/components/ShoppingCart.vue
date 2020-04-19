@@ -14,14 +14,28 @@
                       <img v-bind:src="item.image" class="media-object" style="width:60px"> 
                   </div> 
                 
-                  <div class="media-body"> 
+                  <div class="media- pl-5"> 
                       <h4 class="media-heading"> 
                           {{ item.productName }} 
                       </h4>
                       <p>
                         {{ item.description }}
-                      </p> 
-                      <button class="btn btn-primary" v-on:click="incrementItem(item)">Add to cart</button>
+                      </p>
+                      <div class="w-25 text-center">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                              <button v-on:click="removeFromCart(item)" type="button" class="btn btn-danger btn-number">
+                                <span>-</span>
+                              </button>
+                          </span>
+                          <div class="card w-25 align-middle inline-block">{{item.available}}</div>
+                          <span class="input-group-btn">
+                              <button v-on:click="addToCart(item)" type="button" class="btn btn-success btn-number">
+                                  <span>+</span>
+                              </button>
+                          </span>
+                        </div>
+                      </div>
                   </div> 
               </div>
             </li>
@@ -73,7 +87,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'incrementItem',
+      'addToCart',
+      'removeFromCart',
       'updateItems'
     ])
   },
@@ -99,6 +114,7 @@ ul {
   padding: 0;
 }
 li {
+  text-align: left !important;
   display: inline-block;
   margin: 0 10px;
 }
