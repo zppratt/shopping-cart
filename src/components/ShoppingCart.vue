@@ -23,18 +23,18 @@
                       <div class="text-center row ml-3">
                         <div class="w-25 input-group">
                           <span class="input-group-btn">
-                              <button v-on:click="removeFromCart(item)" type="button" class="btn btn-danger btn-number">
+                              <button v-on:click="removeFromCart(item)" type="button" class="btn btn-danger btn-number minus-btn">
                                 <span>-</span>
                               </button>
                           </span>
-                          <div class="card w-25 align-middle inline-block">{{totalInCart(item)}}</div>
+                          <div class="card w-25 align-middle inline-block item-total-available">{{totalInCart(item)}}</div>
                           <span class="input-group-btn">
-                              <button v-on:click="addToCart(item)" type="button" class="btn btn-success btn-number">
+                              <button v-on:click="addToCart(item)" type="button" class="btn btn-success btn-number plus-btn">
                                   <span>+</span>
                               </button>
                           </span>
                         </div>
-                        <div class="card px-3">Available: {{item.available}}</div>
+                        <div class="card px-3 available">Available: {{item.available}}</div>
                       </div>
                   </div> 
               </div>
@@ -142,5 +142,22 @@ div.sticky {
 }
 .headline {
   z-index:99
+}
+.minus-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.plus-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.item-total-available {
+  border: none;
+  line-height: 38px;
+  height:38px;
+  border-radius: 0;
+}
+.available {
+  line-height: 39px;
 }
 </style>
