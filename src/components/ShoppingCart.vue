@@ -20,7 +20,7 @@
                       <p>
                         {{ item.description }}
                       </p>
-                      <div class="text-center row ml-3">
+                      <div class="text-center row ml-3"> <!-- TODO Its own component -->
                         <div class="w-25 input-group">
                           <span class="input-group-btn">
                               <button v-on:click="removeFromCart(item)" type="button" class="btn btn-danger btn-number minus-btn">
@@ -76,7 +76,6 @@ export default {
   },
   computed: {
     ...mapState([
-      // map this.msg to store.state.msg
       'msg',
       'itemCount',
       'items',
@@ -93,14 +92,14 @@ export default {
       'removeFromCart',
       'updateItems'
     ]),
-    totalInCart(item) {
+    totalInCart(item) { // TODO make a component that calculates its own value for this
       var foundIndex = this.$store.state.items.findIndex(x => x.itemid == item.itemid);
       if (!this.$store.state.items[foundIndex]) {
         console.log('Item not found at index: ' + foundIndex);
         return;
       }
       let count = 0;
-      for (let i = 0; i < this.$store.state.cart.length; i++) {
+      for (let i = 0; i < this.$store.state.cart.length; i++) { // TODO make .find()
         if (this.$store.state.cart[i].itemid === item.itemid) {
           count++;
         }
