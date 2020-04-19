@@ -2,9 +2,16 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import App from './App.vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+library.add(faTrashAlt)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
@@ -50,17 +57,14 @@ const store = new Vuex.Store({ // TODO its own file
     },
     removeFromCart(state, item) {
       // TODO do this without findIndex / direct array mutation?
-      var foundIndex = state.items.findIndex(x => x.itemid == item.itemid);
-      if (!state.items[foundIndex]) {
-        console.log('Item not found at index: ' + foundIndex);
+      const foundItemIndex = state.items.findIndex(x => x.itemid === item.itemid);
+      if (foundItemIndex === -1) {
         return;
       }
-      state.items[foundIndex].available++;
-      for (let i = 0; i < state.cart.length; i++) { // TODO make more functional (.find, etc.)
-        if (state.cart[i].itemid === item.itemid) {
-          state.cart.splice(i, 1);
-          break;
-        }
+      const foundCartIndex = state.cart.findIndex(x => x.itemid === item.itemid)
+      if (foundCartIndex !== -1) {
+        state.items[foundItemIndex].available++;
+        state.cart.splice(foundCartIndex, 1);
       }
       console.log("Cart: " + state.cart);
     },
