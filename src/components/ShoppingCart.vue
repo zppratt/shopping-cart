@@ -10,30 +10,31 @@
             <li v-for="item in items" :key="item.itemid" class="pb-5">
               <div class="media"> 
                   <div class="media-left"> 
-                      <img v-bind:src="item.image" class="media-object" style="width:60px"> 
+                      <img onerror="this.onerror=null;this.src='https://images.pexels.com/photos/1656066/pexels-photo-1656066.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940';" v-bind:src="item.image" class="media-object" style="width:60px"> 
                   </div> 
                 
                   <div class="media- pl-5"> 
                       <h4 class="media-heading"> 
-                          {{ item.productName }} 
+                          {{item.manufacturer}} | <a v-bind:href="item.url" class="">{{ item.productName }}</a> 
                       </h4>
                       <p>
                         {{ item.description }}
                       </p>
-                      <div class="w-25 text-center">
-                        <div class="input-group">
+                      <div class="text-center row ml-3">
+                        <div class="w-25 input-group">
                           <span class="input-group-btn">
                               <button v-on:click="removeFromCart(item)" type="button" class="btn btn-danger btn-number">
                                 <span>-</span>
                               </button>
                           </span>
-                          <div class="card w-25 align-middle inline-block">{{item.available}}</div>
+                          <div class="card w-25 align-middle inline-block">{{totalInCart(item)}}</div>
                           <span class="input-group-btn">
                               <button v-on:click="addToCart(item)" type="button" class="btn btn-success btn-number">
                                   <span>+</span>
                               </button>
                           </span>
                         </div>
+                        <div class="card px-3">Available: {{item.available}}</div>
                       </div>
                   </div> 
               </div>
@@ -91,7 +92,22 @@ export default {
       'addToCart',
       'removeFromCart',
       'updateItems'
-    ])
+    ]),
+    totalInCart(item) {
+      var foundIndex = this.$store.state.items.findIndex(x => x.itemid == item.itemid);
+      if (!this.$store.state.items[foundIndex]) {
+        console.log('Item not found at index: ' + foundIndex);
+        return;
+      }
+      let count = 0;
+      for (let i = 0; i < this.$store.state.cart.length; i++) {
+        if (this.$store.state.cart[i].itemid === item.itemid) {
+          count++;
+        }
+      }
+      console.log(count)
+      return count;
+    }
   },
   filters: {
     currency: function (value) {
