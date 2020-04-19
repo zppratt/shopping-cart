@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
-    <img alt="Vue logo" src="./assets/shopping-cart-solid.svg" width="100">
-    <ShoppingCart msg="Welcome to Your Vue.js App"/>
+    <img alt="Vue logo" class="mb-5" src="./assets/shopping-cart-solid.svg" width="100">
+    <ShoppingCart />
   </div>
 </template>
 

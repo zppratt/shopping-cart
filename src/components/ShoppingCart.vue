@@ -1,12 +1,11 @@
 <template>
   <div class="template">
-    <div class="sticky card pull-left text-right">
-      <h1>Total: {{ total | currency }}</h1>
+    <div class="sticky card text-right headline">
+      <h3>Total: {{ total | currency }}</h3>
     </div>
     <div class="jumbotron">
       <div class="row">
         <div class="col-10">
-          <h1 class="pb-5">{{ msg }}</h1>
           <ul id="example-1">
             <li v-for="item in items" :key="item.itemid" class="pb-5">
               <div class="media"> 
@@ -43,7 +42,9 @@
           </ul>
         </div>
         <div class="col-2">
-          <div class="sticky">
+          <h1>In Cart</h1>
+          <hr>
+          <div class="">
             <ul id="cart">
               <CartItem />
             </ul>
@@ -122,5 +123,8 @@ div.sticky {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+}
+.headline {
+  z-index:99
 }
 </style>
