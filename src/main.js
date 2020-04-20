@@ -34,7 +34,8 @@ const store = new Vuex.Store({ // TODO its own file
     },
     uniqueItems(state) {
       return state.cart.reduce((unique, item) =>
-          unique.some(x => x.itemid === item.itemid) ? unique : [...unique, item], [])
+          unique.some(x => x.itemid === item.itemid) ? unique : [...unique, item]
+      , [])
     }
   },
   mutations: {
