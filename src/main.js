@@ -54,6 +54,7 @@ const store = new Vuex.Store({ // TODO its own file
       // TODO using this "findIndex" value in order to mutate, find a different way
       state.items[foundIndex].available--;
       state.cart.push(item);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
       console.log("Cart: " + state.cart);
     },
     removeFromCart(state, item) {
@@ -67,10 +68,14 @@ const store = new Vuex.Store({ // TODO its own file
         state.items[foundItemIndex].available++;
         state.cart.splice(foundCartIndex, 1);
       }
+      localStorage.setItem('cart', JSON.stringify(state.cart));
       console.log("Cart: " + state.cart);
     },
     updateItems(state, items) {
       state.items = items
+    },
+    updateCart(state, cart) {
+      state.cart = cart;
     }
   }
 })

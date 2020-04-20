@@ -90,7 +90,8 @@ export default {
     ...mapMutations([
       'addToCart',
       'removeFromCart',
-      'updateItems'
+      'updateItems',
+      'updateCart'
     ]),
     totalInCart(item) { // TODO make a component that calculates its own value for this
       var foundIndex = this.$store.state.items.findIndex(x => x.itemid == item.itemid);
@@ -115,6 +116,7 @@ export default {
   },
   created() {
     this.updateItems(items)
+    this.$store.commit('updateCart', JSON.parse(localStorage.getItem('cart')) || [])
   }
 }
 </script>
